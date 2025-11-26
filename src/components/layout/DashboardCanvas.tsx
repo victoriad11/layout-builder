@@ -5,14 +5,12 @@ import { useDashboardStore } from '../../store/dashboardStore';
 export default function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);
 
-  // Empty state when no widgets
   if (widgets.length === 0) {
     return (
       <main className="flex-1 bg-gray-50 p-8">
         <div className="h-full flex items-center justify-center">
           <Empty
-            image={<AppstoreAddOutlined style={{ fontSize: 64, color: '#d9d9d9' }} />}
-            imageStyle={{ height: 80 }}
+            image={<AppstoreAddOutlined className='text-gray-300' style={{ fontSize: 64 }} />}
             description={
               <div>
                 <div className="text-lg font-medium text-gray-900 mb-2">
@@ -29,7 +27,6 @@ export default function DashboardCanvas() {
     );
   }
 
-  // Canvas with widgets
   return (
     <main className="flex-1 bg-gray-50 p-8 overflow-y-auto">
       <div className="max-w-5xl mx-auto space-y-4">

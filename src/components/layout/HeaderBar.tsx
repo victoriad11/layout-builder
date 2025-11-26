@@ -12,10 +12,10 @@ export default function HeaderBar({ onResetClick }: HeaderBarProps) {
     <header className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
         <div>
-          <Title level={2} style={{ margin: 0, fontSize: '24px' }}>
+          <Title level={2} className='m-0 text-xl'>
             Dashboard Builder
           </Title>
-          <Text type="secondary" style={{ fontSize: '13px' }}>
+          <Text type="secondary" className='text-md'>
             Drag widgets from the sidebar to build your custom dashboard
           </Text>
         </div>

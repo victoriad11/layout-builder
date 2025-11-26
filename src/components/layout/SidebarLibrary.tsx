@@ -7,22 +7,21 @@ export default function SidebarLibrary() {
   return (
     <aside className="w-68 bg-white border-r border-gray-200 px-6 py-4 overflow-y-auto">
       <div className="mb-4">
-        <Title level={4} style={{ margin: 0 }}>
+        <Title className='m-0' level={4}>
           Widgets
         </Title>
-        <Text type="secondary" style={{ fontSize: '12px' }}>
+        <Text type="secondary" className='text-md'>
           Drag to add to your dashboard
         </Text>
       </div>
 
-      <Space direction="vertical" size="small" style={{ width: '100%' }}>
+      <Space orientation="vertical" size="small" style={{ width: '100%' }}>
         {WIDGET_TEMPLATES.map((template) => (
           <Card
             key={template.type}
             size="small"
             hoverable
-            className="cursor-move"
-            style={{ borderRadius: '8px' }}
+            className="cursor-move rounded-2"
           >
             <div className="flex items-center gap-4">
               <div className="text-2xl">{template.icon}</div>
@@ -30,7 +29,7 @@ export default function SidebarLibrary() {
                 <div className="text-sm font-medium text-gray-900">
                   {template.defaultTitle}
                 </div>
-                <Text type="secondary" style={{ fontSize: '12px' }} ellipsis>
+                <Text type="secondary" className='text-md' ellipsis>
                   {template.description}
                 </Text>
               </div>

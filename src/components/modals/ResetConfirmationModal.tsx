@@ -1,5 +1,6 @@
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { red } from "@ant-design/colors";
 
 interface ResetConfirmationModalProps {
   isOpen: boolean;
@@ -16,7 +17,7 @@ export default function ResetConfirmationModal({
     <Modal
       title={
         <span>
-          <ExclamationCircleOutlined style={{ color: '#ff4d4f', marginRight: 8 }} />
+          <ExclamationCircleOutlined style={{ color: red[5] }} className='mr-2'   />
           Reset Dashboard?
         </span>
       }

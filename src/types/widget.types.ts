@@ -1,10 +1,7 @@
-// Widget type definitions
 export type WidgetType = "metric" | "text" | "chart" | "todo" | "image";
 
-// Theme options for widgets
 export type ThemeType = "light" | "dark" | "accent";
 
-// Widget instance on the canvas
 export interface WidgetInstance {
   id: string;
   type: WidgetType;
@@ -20,7 +17,6 @@ export interface WidgetInstance {
   };
 }
 
-// Widget template definition for the sidebar
 export interface WidgetTemplate {
   type: WidgetType;
   defaultTitle: string;
@@ -29,13 +25,10 @@ export interface WidgetTemplate {
   defaultConfig: WidgetInstance['config'];
 }
 
-// Dashboard store state and actions
 export interface DashboardStore {
-  // State
   widgets: WidgetInstance[];
   selectedWidgetId: string | null;
 
-  // Actions
   addWidget: (widget: WidgetInstance) => void;
   removeWidget: (id: string) => void;
   reorderWidgets: (newOrder: WidgetInstance[]) => void;
