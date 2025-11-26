@@ -47,7 +47,7 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     description: 'Image with caption',
     defaultConfig: {
       theme: 'light',
-      imageUrl: 'https://via.placeholder.com/400x300',
+      imageUrl: 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image',
     },
   },
 ];

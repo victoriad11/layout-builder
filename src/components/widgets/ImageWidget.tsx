@@ -6,10 +6,14 @@ interface ImageWidgetProps {
 }
 
 export default function ImageWidget({ widget }: ImageWidgetProps) {
-  const imageUrl = widget.config.imageUrl || 'https://via.placeholder.com/400x300';
+  const imageUrl = widget.config.imageUrl || 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image';
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); 
+  };
 
   return (
-    <div className="p-4">
+    <div className="p-4" onClick={handleClick}>
       <Image
         src={imageUrl}
         alt={widget.title}
