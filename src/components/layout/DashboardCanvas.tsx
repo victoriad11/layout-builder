@@ -1,14 +1,28 @@
 import { Empty } from 'antd';
 import { AppstoreAddOutlined } from '@ant-design/icons';
+import { useDroppable } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { useDashboardStore } from '../../store/dashboardStore';
 import DashboardWidget from '../widgets/DashboardWidget';
 
 export default function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);
+  const { setNodeRef, isOver } = useDroppable({
+    id: 'dashboard-canvas',
+  });
+
+  // Extract widget IDs for SortableContext
+  const widgetIds = widgets.map((widget) => widget.id);
 
   if (widgets.length === 0) {
     return (
-      <main className="flex-1 bg-gray-50 p-8">
+      <main
+        ref={setNodeRef}
+        className="flex-1 bg-gray-50 p-8"
+        style={{
+          backgroundColor: isOver ? '#e0f2fe' : undefined,
+        }}
+      >
         <div className="h-full flex items-center justify-center">
           <Empty
             image={<AppstoreAddOutlined className='text-gray-300' style={{ fontSize: 64 }} />}
@@ -29,11 +43,19 @@ export default function DashboardCanvas() {
   }
 
   return (
-    <main className="flex-1 bg-gray-50 p-8 overflow-y-auto">
+    <main
+      ref={setNodeRef}
+      className="flex-1 bg-gray-50 p-8 overflow-y-auto"
+      style={{
+        backgroundColor: isOver ? '#e0f2fe' : undefined,
+      }}
+    >
       <div className="max-w-5xl mx-auto space-y-4">
-        {widgets.map((widget) => (
-          <DashboardWidget key={widget.id} widget={widget} />
-        ))}
+        <SortableContext items={widgetIds} strategy={verticalListSortingStrategy}>
+          {widgets.map((widget) => (
+            <DashboardWidget key={widget.id} widget={widget} />
+          ))}
+        </SortableContext>
       </div>
     </main>
   );
