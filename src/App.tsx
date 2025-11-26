@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ConfigProvider, theme } from 'antd';
 import HeaderBar from './components/layout/HeaderBar';
 import SidebarLibrary from './components/layout/SidebarLibrary';
 import DashboardCanvas from './components/layout/DashboardCanvas';
@@ -15,20 +16,31 @@ function App() {
   };
 
   return (
-    <div className="h-screen flex flex-col">
-      <HeaderBar onResetClick={() => setIsResetModalOpen(true)} />
+    <ConfigProvider
+      theme={{
+        algorithm: theme.defaultAlgorithm,
+        token: {
+          colorPrimary: '#074eb3',
+          borderRadius: 8,
+          fontSize: 14,
+        },
+      }}
+    >
+      <div className="h-screen flex flex-col bg-gray-50">
+        <HeaderBar onResetClick={() => setIsResetModalOpen(true)} />
 
-      <div className="flex-1 flex overflow-hidden">
-        <SidebarLibrary />
-        <DashboardCanvas />
+        <div className="flex-1 flex overflow-hidden">
+          <SidebarLibrary />
+          <DashboardCanvas />
+        </div>
+
+        <ResetConfirmationModal
+          isOpen={isResetModalOpen}
+          onClose={() => setIsResetModalOpen(false)}
+          onConfirm={handleResetConfirm}
+        />
       </div>
-
-      <ResetConfirmationModal
-        isOpen={isResetModalOpen}
-        onClose={() => setIsResetModalOpen(false)}
-        onConfirm={handleResetConfirm}
-      />
-    </div>
+    </ConfigProvider>
   );
 }
 

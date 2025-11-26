@@ -1,4 +1,7 @@
-import { RotateCcw } from 'lucide-react';
+import { Button, Typography } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
+
+const { Title, Text } = Typography;
 
 interface HeaderBarProps {
   onResetClick: () => void;
@@ -6,22 +9,24 @@ interface HeaderBarProps {
 
 export default function HeaderBar({ onResetClick }: HeaderBarProps) {
   return (
-    <header className="bg-white border-b border-gray-200 px-6 py-4">
+    <header className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Dashboard Builder</h1>
-          <p className="text-sm text-gray-500 mt-0.5">
+          <Title level={2} style={{ margin: 0, fontSize: '24px' }}>
+            Dashboard Builder
+          </Title>
+          <Text type="secondary" style={{ fontSize: '13px' }}>
             Drag widgets from the sidebar to build your custom dashboard
-          </p>
+          </Text>
         </div>
 
-        <button
+        <Button
+          icon={<ReloadOutlined />}
           onClick={onResetClick}
-          className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          size="middle"
         >
-          <RotateCcw className="w-4 h-4" />
           Reset Layout
-        </button>
+        </Button>
       </div>
     </header>
   );
