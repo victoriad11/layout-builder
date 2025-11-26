@@ -1,6 +1,7 @@
-import { Empty, Card } from 'antd';
+import { Empty } from 'antd';
 import { AppstoreAddOutlined } from '@ant-design/icons';
 import { useDashboardStore } from '../../store/dashboardStore';
+import DashboardWidget from '../widgets/DashboardWidget';
 
 export default function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);
@@ -31,14 +32,7 @@ export default function DashboardCanvas() {
     <main className="flex-1 bg-gray-50 p-8 overflow-y-auto">
       <div className="max-w-5xl mx-auto space-y-4">
         {widgets.map((widget) => (
-          <Card
-            key={widget.id}
-            size="small"
-            title={widget.title}
-            extra={<span className="text-xs text-gray-400">Type: {widget.type}</span>}
-          >
-            <div className="text-sm text-gray-600">Widget content placeholder</div>
-          </Card>
+          <DashboardWidget key={widget.id} widget={widget} />
         ))}
       </div>
     </main>
