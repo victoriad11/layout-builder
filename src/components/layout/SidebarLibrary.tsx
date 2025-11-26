@@ -5,7 +5,7 @@ const { Title, Text } = Typography;
 
 export default function SidebarLibrary() {
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 px-6 py-4 overflow-y-auto">
+    <aside className="w-68 bg-white border-r border-gray-200 px-6 py-4 overflow-y-auto">
       <div className="mb-4">
         <Title level={4} style={{ margin: 0 }}>
           Widgets
