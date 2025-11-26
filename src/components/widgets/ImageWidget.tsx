@@ -8,18 +8,20 @@ interface ImageWidgetProps {
 export default function ImageWidget({ widget }: ImageWidgetProps) {
   const imageUrl = widget.config.imageUrl || 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image';
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); 
+  const handleContainerClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Stop all clicks within the image container
   };
 
   return (
-    <div className="p-4" onClick={handleClick}>
-      <Image
-        src={imageUrl}
-        alt={widget.title}
-        className="w-full rounded-lg"
-        preview={true}
-      />
+    <div className="p-4">
+      <div onClick={handleContainerClick} className='w-fit'>
+        <Image
+          src={imageUrl}
+          alt={widget.title}
+          className="w-full rounded-lg"
+          preview={true}
+        />
+      </div>
     </div>
   );
 }
