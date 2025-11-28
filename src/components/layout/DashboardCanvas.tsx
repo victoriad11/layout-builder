@@ -2,6 +2,7 @@ import { Empty } from 'antd';
 import { AppstoreAddOutlined } from '@ant-design/icons';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { AnimatePresence } from 'framer-motion';
 import { useDashboardStore } from '../../store/dashboardStore';
 import DashboardWidget from '../widgets/DashboardWidget';
 
@@ -52,9 +53,11 @@ export default function DashboardCanvas() {
     >
       <div className="max-w-5xl mx-auto space-y-4">
         <SortableContext items={widgetIds} strategy={verticalListSortingStrategy}>
-          {widgets.map((widget) => (
-            <DashboardWidget key={widget.id} widget={widget} />
-          ))}
+          <AnimatePresence mode="popLayout">
+            {widgets.map((widget) => (
+              <DashboardWidget key={widget.id} widget={widget} />
+            ))}
+          </AnimatePresence>
         </SortableContext>
       </div>
     </main>

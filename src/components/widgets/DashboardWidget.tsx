@@ -2,6 +2,7 @@ import { Card, Button } from 'antd';
 import { HolderOutlined, CloseOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
+import { motion } from 'framer-motion';
 import { WidgetInstance } from '../../types/widget.types';
 import { useDashboardStore } from '../../store/dashboardStore';
 import { getThemeStyles } from '../../utils/themeStyles';
@@ -77,39 +78,47 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
   };
 
   return (
-    <Card
+    <motion.div
       ref={setNodeRef}
       style={style}
-      className="cursor-pointer hover:shadow-md transition-shadow"
-      size="small"
-      onClick={handleClick}
-      title={
-        <div className="flex items-center gap-2" style={{ color: themeStyles.textColor }}>
-          <HolderOutlined
-            {...attributes}
-            {...listeners}
-            className="cursor-move"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.2 }}
+      layout
+    >
+      <Card
+        className="cursor-pointer hover:shadow-md transition-shadow"
+        size="small"
+        onClick={handleClick}
+        title={
+          <div className="flex items-center gap-2" style={{ color: themeStyles.textColor }}>
+            <HolderOutlined
+              {...attributes}
+              {...listeners}
+              className="cursor-move"
+              style={{
+                color: widget.config.theme === 'dark' ? '#9ca3af' : '#9ca3af'
+              }}
+            />
+            <span>{widget.title}</span>
+          </div>
+        }
+        extra={
+          <Button
+            type="text"
+            size="small"
+            icon={<CloseOutlined />}
+            onClick={handleRemove}
             style={{
               color: widget.config.theme === 'dark' ? '#9ca3af' : '#9ca3af'
             }}
+            className="hover:text-red-500"
           />
-          <span>{widget.title}</span>
-        </div>
-      }
-      extra={
-        <Button
-          type="text"
-          size="small"
-          icon={<CloseOutlined />}
-          onClick={handleRemove}
-          style={{
-            color: widget.config.theme === 'dark' ? '#9ca3af' : '#9ca3af'
-          }}
-          className="hover:text-red-500"
-        />
-      }
-    >
-      {renderWidgetContent()}
-    </Card>
+        }
+      >
+        {renderWidgetContent()}
+      </Card>
+    </motion.div>
   );
 }
