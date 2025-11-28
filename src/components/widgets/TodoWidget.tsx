@@ -10,13 +10,18 @@ export default function TodoWidget({ widget }: TodoWidgetProps) {
   const items = widget.config.items || ['Task 1', 'Task 2', 'Task 3'];
   const themeStyles = getThemeStyles(widget.config.theme);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleSpaceClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
 
   return (
-    <div className="p-4" style={{ color: themeStyles.textColor }} onClick={handleClick}>
-      <Space orientation="vertical" size="middle" style={{ width: '100%' }}>
+    <div className="p-4" style={{ color: themeStyles.textColor }}>
+      <Space
+        orientation="vertical"
+        size="middle"
+        style={{ width: 'fit-content' }}
+        onClick={handleSpaceClick}
+      >
         {items.map((item: string, index: number) => (
           <Checkbox key={index} style={{ color: themeStyles.textColor }}>
             {item}

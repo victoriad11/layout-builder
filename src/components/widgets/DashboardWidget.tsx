@@ -37,10 +37,14 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
 
   const themeStyles = getThemeStyles(widget.config.theme);
 
-  const style = {
+
+  const dndStyle = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1,
+  };
+
+  const cardStyle = {
     backgroundColor: themeStyles.backgroundColor,
     borderColor: themeStyles.borderColor,
     color: themeStyles.textColor,
@@ -80,7 +84,7 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
   return (
     <motion.div
       ref={setNodeRef}
-      style={style}
+      style={dndStyle}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
@@ -88,6 +92,7 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
       layout
     >
       <Card
+        style={cardStyle}
         className="cursor-pointer hover:shadow-md transition-shadow"
         size="small"
         onClick={handleClick}

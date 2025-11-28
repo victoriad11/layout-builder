@@ -5,7 +5,6 @@ import { WidgetTemplate } from '../../types/widget.types';
 
 const { Title, Text } = Typography;
 
-// Draggable wrapper for each widget template
 function DraggableWidgetCard({ template }: { template: WidgetTemplate }) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id: `template-${template.type}`,

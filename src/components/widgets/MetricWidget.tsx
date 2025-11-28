@@ -18,9 +18,9 @@ export default function MetricWidget({ widget }: MetricWidgetProps) {
         value={value}
         precision={0}
         styles={{
+          title: { color: themeStyles.textColor },
           content: { color: widget.config.theme === 'dark' ? '#10b981' : '#3f8600' }
         }}
-        style={{ color: themeStyles.textColor }}
         prefix={<ArrowUpOutlined />}
       />
     </div>
