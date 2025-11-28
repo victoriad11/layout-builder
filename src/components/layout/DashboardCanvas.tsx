@@ -1,13 +1,29 @@
-import { Empty, Card } from 'antd';
+import { Empty } from 'antd';
 import { AppstoreAddOutlined } from '@ant-design/icons';
+import { useDroppable } from '@dnd-kit/core';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { AnimatePresence } from 'framer-motion';
 import { useDashboardStore } from '../../store/dashboardStore';
+import DashboardWidget from '../widgets/DashboardWidget';
 
 export default function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);
+  const { setNodeRef, isOver } = useDroppable({
+    id: 'dashboard-canvas',
+  });
+
+  // Extract widget IDs for SortableContext
+  const widgetIds = widgets.map((widget) => widget.id);
 
   if (widgets.length === 0) {
     return (
-      <main className="flex-1 bg-gray-50 p-8">
+      <main
+        ref={setNodeRef}
+        className="flex-1 bg-gray-50 p-8"
+        style={{
+          backgroundColor: isOver ? '#e0f2fe' : undefined,
+        }}
+      >
         <div className="h-full flex items-center justify-center">
           <Empty
             image={<AppstoreAddOutlined className='text-gray-300' style={{ fontSize: 64 }} />}
@@ -28,18 +44,21 @@ export default function DashboardCanvas() {
   }
 
   return (
-    <main className="flex-1 bg-gray-50 p-8 overflow-y-auto">
+    <main
+      ref={setNodeRef}
+      className="flex-1 bg-gray-50 p-8 overflow-y-auto"
+      style={{
+        backgroundColor: isOver ? '#e0f2fe' : undefined,
+      }}
+    >
       <div className="max-w-5xl mx-auto space-y-4">
-        {widgets.map((widget) => (
-          <Card
-            key={widget.id}
-            size="small"
-            title={widget.title}
-            extra={<span className="text-xs text-gray-400">Type: {widget.type}</span>}
-          >
-            <div className="text-sm text-gray-600">Widget content placeholder</div>
-          </Card>
-        ))}
+        <SortableContext items={widgetIds} strategy={verticalListSortingStrategy}>
+          <AnimatePresence mode="popLayout">
+            {widgets.map((widget) => (
+              <DashboardWidget key={widget.id} widget={widget} />
+            ))}
+          </AnimatePresence>
+        </SortableContext>
       </div>
     </main>
   );

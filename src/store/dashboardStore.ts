@@ -6,29 +6,35 @@ export const useDashboardStore = create<DashboardStore>()(
   persist(
     (set) => ({
       // Initial state
-      widgets: [],
+      widgets: [
+        {
+          id: 'test-widget-1',
+          type: 'metric',
+          title: 'Total Revenue',
+          config: {
+            theme: 'light',
+            value: 12450,
+          },
+        },
+      ],
       selectedWidgetId: null,
 
-      // Add a new widget to the dashboard
       addWidget: (widget: WidgetInstance) =>
         set((state) => ({
           widgets: [...state.widgets, widget],
         })),
 
-      // Remove a widget by ID
       removeWidget: (id: string) =>
         set((state) => ({
           widgets: state.widgets.filter((w) => w.id !== id),
           selectedWidgetId: state.selectedWidgetId === id ? null : state.selectedWidgetId,
         })),
 
-      // Reorder widgets (used after drag & drop)
       reorderWidgets: (newOrder: WidgetInstance[]) =>
         set(() => ({
           widgets: newOrder,
         })),
 
-      // Update a specific widget's properties
       updateWidget: (id: string, updates: Partial<WidgetInstance>) =>
         set((state) => ({
           widgets: state.widgets.map((widget) =>
@@ -38,13 +44,11 @@ export const useDashboardStore = create<DashboardStore>()(
           ),
         })),
 
-      // Set the currently selected widget (for settings panel)
       setSelectedWidget: (id: string | null) =>
         set(() => ({
           selectedWidgetId: id,
         })),
 
-      // Reset the entire dashboard
       resetDashboard: () =>
         set(() => ({
           widgets: [],
