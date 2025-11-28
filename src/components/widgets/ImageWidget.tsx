@@ -9,7 +9,7 @@ export default function ImageWidget({ widget }: ImageWidgetProps) {
   const imageUrl = widget.config.imageUrl || 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image';
 
   const handleContainerClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Stop all clicks within the image container
+    e.stopPropagation();
   };
 
   return (

@@ -22,7 +22,7 @@ function DraggableWidgetCard({ template }: { template: WidgetTemplate }) {
       {...attributes}
       size="small"
       hoverable
-      className="cursor-move rounded-2"
+      className="cursor-move hover:cursor-pointer rounded-2"
       style={{
         opacity: isDragging ? 0.5 : 1,
       }}
