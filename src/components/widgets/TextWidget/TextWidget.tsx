@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
-import { WidgetInstance } from '../../types/widget.types';
-import { getThemeStyles } from '../../utils/themeStyles';
+import { WidgetInstance } from '../../../types/widget.types';
+import { getThemeStyles } from '../../../utils/themeStyles';
 
 const { Paragraph } = Typography;
 

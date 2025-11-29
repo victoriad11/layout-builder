@@ -1,5 +1,5 @@
 import { Image } from 'antd';
-import { WidgetInstance } from '../../types/widget.types';
+import { WidgetInstance } from '../../../types/widget.types';
 
 interface ImageWidgetProps {
   widget: WidgetInstance;

@@ -1,6 +1,6 @@
 import { Checkbox, Space } from 'antd';
-import { WidgetInstance } from '../../types/widget.types';
-import { getThemeStyles } from '../../utils/themeStyles';
+import { WidgetInstance } from '../../../types/widget.types';
+import { getThemeStyles } from '../../../utils/themeStyles';
 
 interface TodoWidgetProps {
   widget: WidgetInstance;

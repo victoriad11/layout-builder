@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { Card, Button } from 'antd';
 import { HolderOutlined, CloseOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
@@ -6,6 +7,7 @@ import { motion } from 'framer-motion';
 import { WidgetInstance } from '../../types/widget.types';
 import { useDashboardStore } from '../../store/dashboardStore';
 import { getThemeStyles } from '../../utils/themeStyles';
+
 import MetricWidget from './MetricWidget';
 import TextWidget from './TextWidget';
 import ChartWidget from './ChartWidget';
@@ -16,7 +18,7 @@ interface DashboardWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function DashboardWidget({ widget }: DashboardWidgetProps) {
+const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widget }, _ref) => {
   const removeWidget = useDashboardStore((state) => state.removeWidget);
   const setSelectedWidget = useDashboardStore((state) => state.setSelectedWidget);
 
@@ -125,4 +127,8 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
       </Card>
     </motion.div>
   );
-}
+});
+
+DashboardWidget.displayName = 'DashboardWidget';
+
+export default DashboardWidget;
