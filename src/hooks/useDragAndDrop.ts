@@ -8,9 +8,9 @@ import {
   DragEndEvent,
 } from '@dnd-kit/core';
 import { arrayMove } from '@dnd-kit/sortable';
-import { useDashboardStore } from '../store/dashboardStore';
-import { WIDGET_TEMPLATES, generateWidgetId } from '../utils/widgetTemplates';
-import { WidgetType } from '../types/widget.types';
+import { useDashboardStore } from '../store';
+import { WIDGET_TEMPLATES, generateWidgetId } from '../utils';
+import { WidgetType } from '../types';
 
 export function useDragAndDrop() {
   const [activeId, setActiveId] = useState<string | null>(null);

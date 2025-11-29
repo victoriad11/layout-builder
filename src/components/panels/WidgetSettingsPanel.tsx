@@ -1,6 +1,7 @@
 import { Drawer, Form, Input, Select, Button, Divider, Space } from 'antd';
 import { CloseOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useWidgetSettings } from '../../hooks';
+import { TodoItem } from '../../types';
 
 export default function WidgetSettingsPanel() {
   const {
@@ -73,7 +74,7 @@ export default function WidgetSettingsPanel() {
           <>
             <Form.Item label="Todo Items">
               <Space orientation='vertical' style={{ width: '100%' }} size="small">
-                {todoItems.map((item: { text: string; completed: boolean }, index: number) => (
+                {todoItems.map((item: TodoItem, index: number) => (
                   <Space.Compact key={index} style={{ width: '100%' }}>
                     <Input
                       value={item.text}
