@@ -73,10 +73,10 @@ export default function WidgetSettingsPanel() {
           <>
             <Form.Item label="Todo Items">
               <Space orientation='vertical' style={{ width: '100%' }} size="small">
-                {todoItems.map((item: string, index: number) => (
+                {todoItems.map((item: { text: string; completed: boolean }, index: number) => (
                   <Space.Compact key={index} style={{ width: '100%' }}>
                     <Input
-                      value={item}
+                      value={item.text}
                       onChange={(e) => handleTodoItemChange(index, e.target.value)}
                       placeholder="Enter todo item"
                     />

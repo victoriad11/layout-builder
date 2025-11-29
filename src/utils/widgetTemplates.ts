@@ -37,7 +37,11 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     description: 'Task checklist',
     defaultConfig: {
       theme: 'light',
-      items: ['Task 1', 'Task 2', 'Task 3'],
+      items: [
+        { text: 'Task 1', completed: false },
+        { text: 'Task 2', completed: false },
+        { text: 'Task 3', completed: false },
+      ],
     },
   },
   {

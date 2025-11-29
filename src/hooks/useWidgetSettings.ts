@@ -1,5 +1,5 @@
-import { useDashboardStore } from '../store/dashboardStore';
-import { ThemeType } from '../types/widget.types';
+import { useDashboardStore } from '../store';
+import { ThemeType } from '../types';
 
 export function useWidgetSettings() {
   const selectedWidgetId = useDashboardStore((state) => state.selectedWidgetId);
@@ -47,14 +47,14 @@ export function useWidgetSettings() {
   const handleTodoItemChange = (index: number, value: string) => {
     if (selectedWidgetId && selectedWidget) {
       const items = [...(selectedWidget.config.items || [])];
-      items[index] = value;
+      items[index] = { ...items[index], text: value };
       updateWidget(selectedWidgetId, { config: { ...selectedWidget.config, items } });
     }
   };
 
   const handleAddTodoItem = () => {
     if (selectedWidgetId && selectedWidget) {
-      const items = [...(selectedWidget.config.items || []), 'New item'];
+      const items = [...(selectedWidget.config.items || []), { text: 'New item', completed: false }];
       updateWidget(selectedWidgetId, { config: { ...selectedWidget.config, items } });
     }
   };
