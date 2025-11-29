@@ -51,7 +51,7 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
   };
 
   const handleRemove = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering widget click
+    e.stopPropagation();
     removeWidget(widget.id);
   };
 
@@ -59,7 +59,6 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
     setSelectedWidget(widget.id);
   };
 
-  // Render widget content based on type
   const renderWidgetContent = () => {
     switch (widget.type) {
       case 'metric':

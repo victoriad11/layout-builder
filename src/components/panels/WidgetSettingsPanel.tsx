@@ -122,7 +122,7 @@ export default function WidgetSettingsPanel() {
       placement="right"
       onClose={handleClose}
       open={!!selectedWidgetId}
-      width={360}
+      size={360}
       closeIcon={<CloseOutlined />}
     >
       <Form layout="vertical">
