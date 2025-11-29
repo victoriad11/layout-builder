@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
-import { WidgetInstance } from '../../../types/widget.types';
-import { getThemeStyles } from '../../../utils/themeStyles';
+import { WidgetInstance } from '../../../types';
+import { getThemeStyles } from '../../../utils';
 
 const { Paragraph } = Typography;
 
@@ -8,7 +8,7 @@ interface TextWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function TextWidget({ widget }: TextWidgetProps) {
+function TextWidget({ widget }: TextWidgetProps) {
   const content = widget.config.content || 'Add your text content here...';
   const themeStyles = getThemeStyles(widget.config.theme);
 
@@ -20,3 +20,5 @@ export default function TextWidget({ widget }: TextWidgetProps) {
     </div>
   );
 }
+
+export { TextWidget }

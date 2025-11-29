@@ -1,6 +1,6 @@
 import { Drawer, Form, Input, Select, Button, Divider, Space } from 'antd';
 import { CloseOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
-import { useWidgetSettings } from '../../hooks/useWidgetSettings';
+import { useWidgetSettings } from '../../hooks';
 
 export default function WidgetSettingsPanel() {
   const {

@@ -4,7 +4,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { AnimatePresence } from 'framer-motion';
 import { useDashboardStore } from '../../store/dashboardStore';
-import DashboardWidget from '../widgets/DashboardWidget';
+import { DashboardWidget } from '../widgets/DashboardWidget';
 
 export default function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);

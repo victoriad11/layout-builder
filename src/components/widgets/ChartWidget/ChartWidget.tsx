@@ -1,13 +1,13 @@
 import { Empty } from 'antd';
 import { BarChartOutlined } from '@ant-design/icons';
-import { WidgetInstance } from '../../../types/widget.types';
-import { getThemeStyles } from '../../../utils/themeStyles';
+import { WidgetInstance } from '../../../types';
+import { getThemeStyles } from '../../../utils';
 
 interface ChartWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function ChartWidget({ widget }: ChartWidgetProps) {
+function ChartWidget({ widget }: ChartWidgetProps) {
   const themeStyles = getThemeStyles(widget.config.theme);
 
   return (
@@ -25,3 +25,5 @@ export default function ChartWidget({ widget }: ChartWidgetProps) {
     </div>
   );
 }
+
+export { ChartWidget }

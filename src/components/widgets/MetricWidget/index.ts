@@ -1,1 +1,1 @@
-export { default } from './MetricWidget';
+export * from './MetricWidget';

@@ -1,1 +1,1 @@
-export { default } from './ChartWidget';
+export * from './ChartWidget';

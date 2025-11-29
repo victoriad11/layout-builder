@@ -1,8 +1,8 @@
 import { DragOverlay } from '@dnd-kit/core';
 import { Card } from 'antd';
-import { WidgetInstance } from '../../types/widget.types';
-import { WIDGET_TEMPLATES } from '../../utils/widgetTemplates';
-import DashboardWidget from '../widgets/DashboardWidget';
+import { WidgetInstance } from '../../types';
+import { WIDGET_TEMPLATES } from '../../utils';
+import { DashboardWidget } from '../widgets';
 
 interface DragOverlayWrapperProps {
   activeId: string | null;

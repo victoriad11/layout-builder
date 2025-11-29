@@ -1,1 +1,1 @@
-export { default } from './ImageWidget';
+export * from './ImageWidget';

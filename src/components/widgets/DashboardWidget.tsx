@@ -4,15 +4,14 @@ import { HolderOutlined, CloseOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { motion } from 'framer-motion';
-import { WidgetInstance } from '../../types/widget.types';
-import { useDashboardStore } from '../../store/dashboardStore';
-import { getThemeStyles } from '../../utils/themeStyles';
-
-import MetricWidget from './MetricWidget';
-import TextWidget from './TextWidget';
-import ChartWidget from './ChartWidget';
-import TodoWidget from './TodoWidget';
-import ImageWidget from './ImageWidget';
+import { WidgetInstance } from '../../types';
+import { useDashboardStore } from '../../store';
+import { getThemeStyles } from '../../utils';
+import { MetricWidget } from './MetricWidget';
+import { TextWidget } from './TextWidget';
+import { ChartWidget } from './ChartWidget';
+import { TodoWidget } from './TodoWidget';
+import { ImageWidget } from './ImageWidget';
 
 interface DashboardWidgetProps {
   widget: WidgetInstance;
@@ -131,4 +130,4 @@ const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widg
 
 DashboardWidget.displayName = 'DashboardWidget';
 
-export default DashboardWidget;
+export { DashboardWidget }

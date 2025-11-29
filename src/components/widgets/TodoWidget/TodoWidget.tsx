@@ -1,12 +1,12 @@
 import { Checkbox, Space } from 'antd';
-import { WidgetInstance } from '../../../types/widget.types';
-import { getThemeStyles } from '../../../utils/themeStyles';
+import { WidgetInstance } from '../../../types';
+import { getThemeStyles } from '../../../utils';
 
 interface TodoWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function TodoWidget({ widget }: TodoWidgetProps) {
+function TodoWidget({ widget }: TodoWidgetProps) {
   const items = widget.config.items || ['Task 1', 'Task 2', 'Task 3'];
   const themeStyles = getThemeStyles(widget.config.theme);
 
@@ -31,3 +31,5 @@ export default function TodoWidget({ widget }: TodoWidgetProps) {
     </div>
   );
 }
+
+export { TodoWidget }

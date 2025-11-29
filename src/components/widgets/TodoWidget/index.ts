@@ -1,1 +1,1 @@
-export { default } from './TodoWidget';
+export * from './TodoWidget';

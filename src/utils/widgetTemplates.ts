@@ -1,4 +1,4 @@
-import { WidgetTemplate } from '../types/widget.types';
+import { WidgetTemplate } from '../types';
 
 export const WIDGET_TEMPLATES: WidgetTemplate[] = [
   {
