@@ -2,6 +2,11 @@ export type WidgetType = "metric" | "text" | "chart" | "todo" | "image";
 
 export type ThemeType = "light" | "dark" | "accent";
 
+export interface TodoItem {
+  text: string;
+  completed: boolean;
+}
+
 export interface WidgetInstance {
   id: string;
   type: WidgetType;
@@ -11,7 +16,7 @@ export interface WidgetInstance {
     // Widget-specific configuration
     value?: number;  // For metric widgets
     content?: string;  // For text widgets
-    items?: string[];  // For todo widgets
+    items?: TodoItem[];  // For todo widgets
     imageUrl?: string;  // For image widgets
     [key: string]: any;  // Allow additional properties
   };
