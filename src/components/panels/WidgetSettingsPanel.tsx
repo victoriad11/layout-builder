@@ -3,7 +3,7 @@ import { CloseOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useWidgetSettings } from '../../hooks';
 import { TodoItem } from '../../types';
 
-export default function WidgetSettingsPanel() {
+function WidgetSettingsPanel() {
   const {
     selectedWidget,
     selectedWidgetId,
@@ -231,3 +231,5 @@ export default function WidgetSettingsPanel() {
     </Drawer>
   );
 }
+
+export { WidgetSettingsPanel }

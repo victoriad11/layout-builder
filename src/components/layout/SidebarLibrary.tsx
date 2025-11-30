@@ -61,3 +61,5 @@ export default function SidebarLibrary() {
     </aside>
   );
 }
+
+export { DraggableWidgetCard, SidebarLibrary }

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { DashboardStore, WidgetInstance } from '../types/widget.types';
+import { DashboardStore, WidgetInstance } from '../types';
 
 export const useDashboardStore = create<DashboardStore>()(
   persist(

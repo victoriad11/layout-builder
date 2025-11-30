@@ -9,7 +9,7 @@ interface DragOverlayWrapperProps {
   widgets: WidgetInstance[];
 }
 
-export default function DragOverlayWrapper({ activeId, widgets }: DragOverlayWrapperProps) {
+function DragOverlayWrapper({ activeId, widgets }: DragOverlayWrapperProps) {
   return (
     <DragOverlay>
       {activeId ? (() => {
@@ -56,3 +56,5 @@ export default function DragOverlayWrapper({ activeId, widgets }: DragOverlayWra
     </DragOverlay>
   );
 }
+
+export { DragOverlayWrapper }
