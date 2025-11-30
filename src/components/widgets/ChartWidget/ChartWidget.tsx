@@ -1,27 +1,32 @@
-import { Empty } from 'antd';
-import { BarChartOutlined } from '@ant-design/icons';
+import { ResponsiveContainer } from 'recharts';
 import { WidgetInstance } from '../../../types';
-import { getThemeStyles } from '../../../utils';
+import { renderChart, getChartColors } from './utils';
+
+const defaultData = [
+  { name: 'Jan', value: 400 },
+  { name: 'Feb', value: 300 },
+  { name: 'Mar', value: 600 },
+  { name: 'Apr', value: 800 },
+  { name: 'May', value: 500 },
+  { name: 'Jun', value: 700 },
+];
 
 interface ChartWidgetProps {
   widget: WidgetInstance;
 }
 
 function ChartWidget({ widget }: ChartWidgetProps) {
-  const themeStyles = getThemeStyles(widget.config.theme);
+
+
+  const data = widget.config.chartData || defaultData;
+  const chartType = widget.config.chartType || 'line';
+  const colors = getChartColors(widget.config.theme);
 
   return (
-    <div className="p-4">
-      <Empty
-        image={<BarChartOutlined style={{ fontSize: 48 }} />}
-        styles={{ image: { height: 48 } }}
-        description={
-          <div style={{ color: themeStyles.textColor }}>
-            <div className="font-medium">Chart Placeholder</div>
-            <div className="text-sm">Integrate with a charting library</div>
-          </div>
-        }
-      />
+    <div className="p-4" style={{ height: '300px' }}>
+      <ResponsiveContainer width="100%" height="100%">
+        {renderChart({ chartType, data, colors })}
+      </ResponsiveContainer>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useDashboardStore } from '../store';
-import { ThemeType } from '../types';
+import { ThemeType, ChartType } from '../types';
 
 export function useWidgetSettings() {
   const selectedWidgetId = useDashboardStore((state) => state.selectedWidgetId);
@@ -67,6 +67,38 @@ export function useWidgetSettings() {
     }
   };
 
+  const handleChartDataChange = (index: number, field: 'name' | 'value', value: string) => {
+    if (selectedWidgetId && selectedWidget) {
+      const chartData = [...(selectedWidget.config.chartData || [])];
+      chartData[index] = {
+        ...chartData[index],
+        [field]: field === 'value' ? parseFloat(value) || 0 : value
+      };
+      updateWidget(selectedWidgetId, { config: { ...selectedWidget.config, chartData } });
+    }
+  };
+
+  const handleAddChartDataPoint = () => {
+    if (selectedWidgetId && selectedWidget) {
+      const chartData = [...(selectedWidget.config.chartData || []), { name: 'New', value: 0 }];
+      updateWidget(selectedWidgetId, { config: { ...selectedWidget.config, chartData } });
+    }
+  };
+
+  const handleRemoveChartDataPoint = (index: number) => {
+    if (selectedWidgetId && selectedWidget) {
+      const chartData = [...(selectedWidget.config.chartData || [])];
+      chartData.splice(index, 1);
+      updateWidget(selectedWidgetId, { config: { ...selectedWidget.config, chartData } });
+    }
+  };
+
+  const handleChartTypeChange = (chartType: ChartType) => {
+    if (selectedWidgetId) {
+      updateWidget(selectedWidgetId, { config: { ...selectedWidget?.config, chartType } });
+    }
+  };
+
   return {
     selectedWidget,
     selectedWidgetId,
@@ -79,5 +111,9 @@ export function useWidgetSettings() {
     handleTodoItemChange,
     handleAddTodoItem,
     handleRemoveTodoItem,
+    handleChartDataChange,
+    handleAddChartDataPoint,
+    handleRemoveChartDataPoint,
+    handleChartTypeChange,
   };
 }
