@@ -20,7 +20,7 @@ function DashboardCanvas() {
     return (
       <main
         ref={setNodeRef}
-        className="flex-1 bg-gray-50 p-8"
+        className="flex-1 bg-gray-50 p-4 md:p-8"
       >
         <div className="h-full flex items-center justify-center">
           <Empty
@@ -30,8 +30,13 @@ function DashboardCanvas() {
                 <div className="text-lg font-medium mb-2" style={{ color: gray[9] }}>
                   Your dashboard is empty
                 </div>
-                <div className="text-sm max-w-sm mx-auto" style={{ color: gray[6] }}>
-                  Drag widgets from the sidebar to start building your custom dashboard layout
+                <div className="text-sm max-w-sm mx-auto px-4" style={{ color: gray[6] }}>
+                  <span className="hidden md:inline">
+                    Drag widgets from the sidebar to start building your custom dashboard layout
+                  </span>
+                  <span className="md:hidden">
+                    Tap the + button to add widgets to your dashboard
+                  </span>
                 </div>
               </div>
             }
@@ -44,9 +49,9 @@ function DashboardCanvas() {
   return (
     <main
       ref={setNodeRef}
-      className="flex-1 bg-gray-50 p-8 overflow-y-auto"
+      className="flex-1 bg-gray-50 p-4 md:p-8 overflow-y-auto"
     >
-      <div className="max-w-5xl mx-auto space-y-4 pb-96">
+      <div className="max-w-5xl mx-auto space-y-3 md:space-y-4 pb-24 md:pb-96">
         <SortableContext items={widgetIds} strategy={verticalListSortingStrategy}>
           <AnimatePresence mode="popLayout">
             {widgets.map((widget) => (

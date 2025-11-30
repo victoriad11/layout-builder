@@ -44,7 +44,7 @@ function DraggableWidgetCard({ template }: { template: WidgetTemplate }) {
 
 export default function SidebarLibrary() {
   return (
-    <aside className="w-68 bg-white border-r border-gray-200 px-6 py-4 overflow-y-auto">
+    <aside className="h-full w-68 bg-white border-r border-gray-200 px-6 py-4 overflow-y-auto">
       <div className="mb-4">
         <Title className='m-0' level={4}>
           Widgets
