@@ -32,3 +32,12 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
+
+/* Mobile drawer safe area padding */
+.mobile-drawer .ant-drawer-header {
+  padding-top: max(16px, env(safe-area-inset-top)) !important;
+}
+
+.mobile-drawer .ant-drawer-body {
+  padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+}

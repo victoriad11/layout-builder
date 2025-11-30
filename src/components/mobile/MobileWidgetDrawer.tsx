@@ -1,4 +1,5 @@
 import { Drawer, Space, Card, Typography } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import { WIDGET_TEMPLATES, generateWidgetId } from '../../utils';
 import { WidgetTemplate } from '../../types';
 import { useDashboardStore } from '../../store';
@@ -56,7 +57,7 @@ export function MobileWidgetDrawer({ open, onClose }: MobileWidgetDrawerProps) {
   return (
     <Drawer
       title={
-        <div>
+        <div style={{ paddingTop: 'env(safe-area-inset-top)' }}>
           <Title level={4} className="m-0">
             Widgets
           </Title>
@@ -69,21 +70,18 @@ export function MobileWidgetDrawer({ open, onClose }: MobileWidgetDrawerProps) {
       onClose={onClose}
       open={open}
       size="large"
-      styles={{
-        body: {
-          paddingTop: 16,
-          paddingBottom: 'calc(16px + env(safe-area-inset-bottom))'
-        },
-        header: {
-          paddingTop: 'calc(16px + env(safe-area-inset-top))'
-        }
-      }}
+      className="mobile-drawer"
+      closable={true}
+      closeIcon={<CloseOutlined />}
+      maskClosable={true}
     >
-      <Space orientation="vertical" size="small" style={{ width: '100%' }}>
-        {WIDGET_TEMPLATES.map((template) => (
-          <TappableWidgetCard key={template.type} template={template} onAdd={onClose} />
-        ))}
-      </Space>
+      <div style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+        <Space orientation="vertical" size="small" style={{ width: '100%' }}>
+          {WIDGET_TEMPLATES.map((template) => (
+            <TappableWidgetCard key={template.type} template={template} onAdd={onClose} />
+          ))}
+        </Space>
+      </div>
     </Drawer>
   );
 }
