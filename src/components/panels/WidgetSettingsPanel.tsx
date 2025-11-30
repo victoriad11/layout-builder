@@ -187,6 +187,14 @@ function WidgetSettingsPanel() {
       open={!!selectedWidgetId}
       size={isMobile ? 'large' : 360}
       closeIcon={<CloseOutlined />}
+      styles={isMobile ? {
+        body: {
+          paddingBottom: 'calc(16px + env(safe-area-inset-bottom))'
+        },
+        header: {
+          paddingTop: 'calc(16px + env(safe-area-inset-top))'
+        }
+      } : undefined}
     >
       <Form layout="vertical">
         {/* General Settings */}

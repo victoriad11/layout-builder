@@ -99,16 +99,19 @@ const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widg
         size="small"
         onClick={handleClick}
         title={
-          <div className="flex items-center gap-2" style={{ color: themeStyles.textColor }}>
+          <div className="flex items-center gap-2" style={{ color: themeStyles.textColor, userSelect: 'none', WebkitUserSelect: 'none' }}>
             <HolderOutlined
               {...attributes}
               {...listeners}
-              className="cursor-move"
+              className="cursor-move touch-none"
               style={{
-                color: widget.config.theme === 'dark' ? gray[5] : gray[6]
+                color: widget.config.theme === 'dark' ? gray[5] : gray[6],
+                fontSize: '18px',
+                padding: '4px',
+                margin: '-4px'
               }}
             />
-            <span>{widget.title}</span>
+            <span style={{ userSelect: 'none', WebkitUserSelect: 'none' }}>{widget.title}</span>
           </div>
         }
         extra={
