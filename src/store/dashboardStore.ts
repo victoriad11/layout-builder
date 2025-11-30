@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { DashboardStore, WidgetInstance } from '../types';
+import { STORAGE_KEYS } from '../config';
 
 export const useDashboardStore = create<DashboardStore>()(
   persist(
@@ -55,7 +56,7 @@ export const useDashboardStore = create<DashboardStore>()(
         })),
     }),
     {
-      name: 'dashboard-storage', // localStorage key
+      name: STORAGE_KEYS.DASHBOARD_STATE,
     }
   )
 );

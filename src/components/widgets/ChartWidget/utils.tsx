@@ -16,6 +16,7 @@ import {
 } from 'recharts';
 import { blue, green, gold, red, purple, cyan, gray } from '@ant-design/colors';
 import { ChartType, ChartDataPoint, ThemeType } from '../../../types';
+import { CHART_CONFIG } from '../../../constants';
 
 interface ChartColors {
   primary: string;
@@ -24,6 +25,15 @@ interface ChartColors {
   background: string;
 }
 
+/**
+ * Get theme-specific colors for chart components
+ *
+ * Returns appropriate colors for chart elements (primary data, grid lines, text, background)
+ * based on the selected theme. Uses Ant Design color tokens for consistency.
+ *
+ * @param theme - The theme type ('light', 'dark', or 'accent'). Defaults to 'light' if not specified.
+ * @returns An object containing primary, grid, text, and background colors
+ */
 export const getChartColors = (theme?: ThemeType): ChartColors => {
   const isDark = theme === 'dark';
   const isAccent = theme === 'accent';
@@ -53,10 +63,23 @@ interface RenderChartProps {
   colors: ChartColors;
 }
 
+/**
+ * Render a chart component based on the specified type
+ *
+ * Creates and configures a Recharts component (line, bar, area, or pie chart)
+ * with the provided data and theme colors. Each chart type includes appropriate
+ * axis configuration, tooltips, and styling.
+ *
+ * @param props - Chart rendering configuration
+ * @param props.chartType - The type of chart to render ('line', 'bar', 'area', or 'pie')
+ * @param props.data - Array of data points to display
+ * @param props.colors - Theme-specific colors for chart elements
+ * @returns A configured Recharts component or null if chart type is invalid
+ */
 export const renderChart = ({ chartType, data, colors }: RenderChartProps) => {
   const commonAxisProps = {
     stroke: colors.text,
-    style: { fontSize: '12px' },
+    style: { fontSize: CHART_CONFIG.AXIS_FONT_SIZE },
   };
 
   const commonTooltipProps = {
@@ -78,7 +101,7 @@ export const renderChart = ({ chartType, data, colors }: RenderChartProps) => {
     case 'line':
       return (
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
+          <CartesianGrid strokeDasharray={CHART_CONFIG.GRID_DASH_ARRAY} stroke={colors.grid} />
           <XAxis dataKey="name" {...commonAxisProps} />
           <YAxis {...commonAxisProps} />
           <Tooltip {...commonTooltipProps} />
@@ -86,9 +109,9 @@ export const renderChart = ({ chartType, data, colors }: RenderChartProps) => {
             type="monotone"
             dataKey="value"
             stroke={colors.primary}
-            strokeWidth={2}
-            dot={{ fill: colors.primary, r: 4 }}
-            activeDot={{ r: 6 }}
+            strokeWidth={CHART_CONFIG.LINE_STROKE_WIDTH}
+            dot={{ fill: colors.primary, r: CHART_CONFIG.DOT_RADIUS }}
+            activeDot={{ r: CHART_CONFIG.ACTIVE_DOT_RADIUS }}
           />
         </LineChart>
       );
@@ -96,18 +119,18 @@ export const renderChart = ({ chartType, data, colors }: RenderChartProps) => {
     case 'bar':
       return (
         <BarChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
+          <CartesianGrid strokeDasharray={CHART_CONFIG.GRID_DASH_ARRAY} stroke={colors.grid} />
           <XAxis dataKey="name" {...commonAxisProps} />
           <YAxis {...commonAxisProps} />
           <Tooltip {...commonTooltipProps} cursor={{ fill: 'transparent' }} />
-          <Bar dataKey="value" fill={colors.primary} radius={[4, 4, 0, 0]} />
+          <Bar dataKey="value" fill={colors.primary} radius={CHART_CONFIG.BAR_RADIUS} />
         </BarChart>
       );
 
     case 'area':
       return (
         <AreaChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke={colors.grid} />
+          <CartesianGrid strokeDasharray={CHART_CONFIG.GRID_DASH_ARRAY} stroke={colors.grid} />
           <XAxis dataKey="name" {...commonAxisProps} />
           <YAxis {...commonAxisProps} />
           <Tooltip {...commonTooltipProps} />
@@ -131,7 +154,7 @@ export const renderChart = ({ chartType, data, colors }: RenderChartProps) => {
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius={80}
+            outerRadius={CHART_CONFIG.PIE_OUTER_RADIUS}
             label={(entry) => entry.name}
             labelLine={false}
           >

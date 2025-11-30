@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { WidgetInstance } from '../../types';
 import { useDashboardStore } from '../../store';
 import { getThemeStyles } from '../../utils';
+import { ANIMATION, DRAG_CONFIG } from '../../constants';
 import { MetricWidget } from './MetricWidget';
 import { TextWidget } from './TextWidget';
 import { ChartWidget } from './ChartWidget';
@@ -43,7 +44,7 @@ const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widg
   const dndStyle = {
     transform: CSS.Transform.toString(transform),
     transition,
-    opacity: isDragging ? 0.5 : 1,
+    opacity: isDragging ? DRAG_CONFIG.DRAG_OPACITY : 1,
   };
 
   const cardStyle = {
@@ -86,10 +87,10 @@ const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widg
     <motion.div
       ref={setNodeRef}
       style={dndStyle}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.2 }}
+      initial={ANIMATION.INITIAL}
+      animate={ANIMATION.ANIMATE}
+      exit={ANIMATION.EXIT}
+      transition={{ duration: ANIMATION.DURATION }}
       layout
     >
       <Card
