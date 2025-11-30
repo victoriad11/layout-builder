@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { Card, Button } from 'antd';
 import { HolderOutlined, CloseOutlined } from '@ant-design/icons';
+import { gray, red } from '@ant-design/colors';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { motion } from 'framer-motion';
@@ -103,7 +104,7 @@ const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widg
               {...listeners}
               className="cursor-move"
               style={{
-                color: widget.config.theme === 'dark' ? '#9ca3af' : '#9ca3af'
+                color: widget.config.theme === 'dark' ? gray[5] : gray[6]
               }}
             />
             <span>{widget.title}</span>
@@ -116,9 +117,10 @@ const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widg
             icon={<CloseOutlined />}
             onClick={handleRemove}
             style={{
-              color: widget.config.theme === 'dark' ? '#9ca3af' : '#9ca3af'
+              color: widget.config.theme === 'dark' ? gray[5] : gray[6]
             }}
-            className="hover:text-red-500"
+            onMouseEnter={(e) => e.currentTarget.style.color = red[5]}
+            onMouseLeave={(e) => e.currentTarget.style.color = widget.config.theme === 'dark' ? gray[5] : gray[6]}
           />
         }
       >
