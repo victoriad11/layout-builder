@@ -187,6 +187,62 @@ The Chart widget uses **Recharts** for professional data visualization:
 
 ## 🔧 Configuration
 
+## 🧪 Testing
+
+This project includes comprehensive unit tests using **Vitest** and **React Testing Library**.
+
+### Running Tests
+
+```bash
+# Run tests in watch mode
+npm test
+
+# Run tests once
+npm test -- --run
+
+# Run tests with UI
+npm run test:ui
+
+# Generate coverage report
+npm run test:coverage
+```
+
+### Test Coverage
+
+Current test coverage includes:
+
+- ✅ **Utility Functions**: `themeStyles`, `widgetTemplates` - 100%
+- ✅ **Widget Utils**: `MetricWidget/utils`, `ChartWidget/utils` - 100%
+- ✅ **State Management**: `dashboardStore` (Zustand) - Full coverage of all actions
+- ✅ **48 tests** passing
+
+### Test Structure
+
+```
+src/
+├── test-utils/
+│   ├── setup.ts          # Test setup & localStorage mock
+│   └── test-utils.tsx    # Custom render with providers
+├── utils/
+│   ├── themeStyles.test.ts
+│   └── widgetTemplates.test.ts
+├── components/widgets/
+│   ├── MetricWidget/
+│   │   └── utils.test.tsx
+│   └── ChartWidget/
+│       └── utils.test.tsx
+└── store/
+    └── dashboardStore.test.ts
+```
+
+### What's Tested
+
+- **Theme System**: All theme variants (light, dark, accent) return correct colors
+- **Widget Templates**: Structure validation, default configs, ID generation
+- **Metric Widget Logic**: Arrow icons and color coding for positive/negative/zero values
+- **Chart Colors**: Theme-aware color generation for all chart types
+- **Store Actions**: Add, remove, update, reorder widgets, and state management
+
 ## 📝 Development Notes
 
 ### Adding New Widget Types
