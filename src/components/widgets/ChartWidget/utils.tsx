@@ -14,6 +14,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+import { blue, green, gold, red, purple, cyan, gray } from '@ant-design/colors';
 import { ChartType, ChartDataPoint, ThemeType } from '../../../types';
 
 interface ChartColors {
@@ -28,15 +29,15 @@ export const getChartColors = (theme?: ThemeType): ChartColors => {
   const isAccent = theme === 'accent';
 
   return {
-    primary: isDark ? '#60a5fa' : isAccent ? '#f59e0b' : '#1890ff',
-    grid: isDark ? '#374151' : '#e5e7eb',
-    text: isDark ? '#f3f4f6' : isAccent ? '#f3f4f6' : '#374151',
-    background: isDark ? '#1f2937' : isAccent ? '#f59e0b' : '#ffffff',
+    primary: isDark ? blue[4] : isAccent ? gold[5] : blue[5],
+    grid: isDark ? gray[7] : gray[4],
+    text: isDark ? gray[3] : isAccent ? gray[3] : gray[8],
+    background: isDark ? gray[9] : isAccent ? gold[5] : '#ffffff',
   };
 };
 
-// Pie chart specific colors
-const PIE_COLORS = ['#1890ff', '#52c41a', '#faad14', '#f5222d', '#722ed1', '#13c2c2'];
+// Pie chart specific colors using Ant Design color palette
+const PIE_COLORS = [blue[5], green[5], gold[5], red[5], purple[5], cyan[5]];
 
 // Helper to map chart data for pie charts
 const mapToPieData = (data: ChartDataPoint[]) => {
