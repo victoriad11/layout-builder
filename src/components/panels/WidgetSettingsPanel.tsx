@@ -181,20 +181,20 @@ function WidgetSettingsPanel() {
 
   return (
     <Drawer
-      title={isMobile ? (
-        <div style={{ paddingTop: 'env(safe-area-inset-top)' }}>
-          Widget Settings
-        </div>
-      ) : "Widget Settings"}
+      title="Widget Settings"
       placement={isMobile ? 'bottom' : 'right'}
       onClose={handleClose}
       open={!!selectedWidgetId}
       size={isMobile ? 'large' : 360}
       closeIcon={<CloseOutlined />}
-      className={isMobile ? 'mobile-drawer' : ''}
+      styles={isMobile ? {
+        wrapper: {
+          overflowY: 'auto',
+          maxHeight: '85vh',
+        },
+      } : undefined}
     >
-      <div style={isMobile ? { paddingBottom: 'env(safe-area-inset-bottom)' } : undefined}>
-        <Form layout="vertical">
+      <Form layout="vertical">
         {/* General Settings */}
         <div className="mb-4">
           <h3 className="text-sm font-semibold text-gray-700 mb-3">General Settings</h3>
@@ -246,7 +246,6 @@ function WidgetSettingsPanel() {
           </Button>
         </div>
       </Form>
-      </div>
     </Drawer>
   );
 }

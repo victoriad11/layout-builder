@@ -57,7 +57,7 @@ export function MobileWidgetDrawer({ open, onClose }: MobileWidgetDrawerProps) {
   return (
     <Drawer
       title={
-        <div style={{ paddingTop: 'env(safe-area-inset-top)' }}>
+        <div>
           <Title level={4} className="m-0">
             Widgets
           </Title>
@@ -70,18 +70,21 @@ export function MobileWidgetDrawer({ open, onClose }: MobileWidgetDrawerProps) {
       onClose={onClose}
       open={open}
       size="large"
-      className="mobile-drawer"
-      closable={true}
+      closable
       closeIcon={<CloseOutlined />}
-      maskClosable={true}
+      maskClosable
+      styles={{
+        wrapper: {
+          overflowY: 'auto',
+          maxHeight: '85vh',
+        },
+      }}
     >
-      <div style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
-        <Space orientation="vertical" size="small" style={{ width: '100%' }}>
-          {WIDGET_TEMPLATES.map((template) => (
-            <TappableWidgetCard key={template.type} template={template} onAdd={onClose} />
-          ))}
-        </Space>
-      </div>
+      <Space orientation="vertical" size="small" style={{ width: '100%' }}>
+        {WIDGET_TEMPLATES.map((template) => (
+          <TappableWidgetCard key={template.type} template={template} onAdd={onClose} />
+        ))}
+      </Space>
     </Drawer>
   );
 }

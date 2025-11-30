@@ -24,20 +24,3 @@ body {
   user-select: none;
   -webkit-touch-callout: none;
 }
-
-/* iOS safe area support */
-@supports (padding: max(0px)) {
-  body {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-}
-
-/* Mobile drawer safe area padding */
-.mobile-drawer .ant-drawer-header {
-  padding-top: max(16px, env(safe-area-inset-top)) !important;
-}
-
-.mobile-drawer .ant-drawer-body {
-  padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
-}
