@@ -51,7 +51,7 @@ export default function DashboardCanvas() {
         backgroundColor: isOver ? '#e0f2fe' : undefined,
       }}
     >
-      <div className="max-w-5xl mx-auto space-y-4">
+      <div className="max-w-5xl mx-auto space-y-4 pb-96">
         <SortableContext items={widgetIds} strategy={verticalListSortingStrategy}>
           <AnimatePresence mode="popLayout">
             {widgets.map((widget) => (
