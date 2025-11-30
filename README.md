@@ -1,29 +1,56 @@
 # 📊 Dashboard Layout Builder
 
-A modern, interactive dashboard builder with drag-and-drop functionality.
+A modern, interactive dashboard builder with drag-and-drop functionality and comprehensive widget content editing capabilities.
 
 ## ✨ Features
 
 ### Core Functionality
 - **Drag & Drop Interface**: Add widgets from sidebar to canvas with smooth animations
 - **Widget Reordering**: Rearrange widgets on the dashboard by dragging the handle icon
-- **Real-time Editing**: Click any widget to edit title and theme in a slide-in panel
+- **Real-time Editing**: Click any widget to edit title, theme, and widget-specific content
+- **Content Editing**: Full support for editing widget data (metrics, text, images, charts, todos)
 - **Persistent State**: All changes automatically saved to localStorage
-- **Theme Support**: Light, Dark, and Accent themes for each widget
+- **Theme Support**: Light, Dark, and Accent themes for each widget with Ant Design colors
 - **Smooth Animations**: Framer Motion animations for add/remove/reorder actions
 
-### Widget Types
-- 📊 **Metric Card**: Display KPIs with trend indicators
-- 📝 **Text Block**: Rich text content areas
-- 📈 **Chart**: Placeholder for future chart integrations
-- ✓ **Todo List**: Interactive task checklists
-- 🖼️ **Image Card**: Images with preview functionality
+### Widget Types & Capabilities
+
+#### 📊 Metric Card
+- Display KPIs with dynamic trend indicators
+- Edit metric values in real-time
+- Smart arrows: green ↑ for positive, red ↓ for negative, none for zero
+- Color-coded values based on positive/negative
+
+#### 📝 Text Block
+- Rich text content areas
+- Editable text content via settings panel
+- Theme-aware text rendering
+
+#### 📈 Chart Widget (Recharts Integration)
+- **4 Chart Types**: Line, Bar, Area, and Pie charts
+- **Interactive Data Editing**: Add, edit, and remove data points
+- **Chart Type Switcher**: Change chart type on the fly
+- **Theme-Aware**: All charts adapt to widget theme (light/dark/accent)
+- **Professional Styling**: Tooltips, grids, legends with consistent design
+
+#### ✓ Todo List
+- Interactive task checklists with checkboxes
+- **Persistent State**: Checked/unchecked state survives page refresh
+- Add, edit, and remove todo items
+- Empty state encouragement when no tasks
+
+#### 🖼️ Image Card
+- Images with live preview
+- Editable image URLs
+- Responsive image rendering with proper sizing
 
 ### User Experience
 - **Empty State**: Helpful onboarding when dashboard is empty
+- **Widget Empty States**: Contextual messages for empty widgets
 - **Visual Feedback**: Drag overlay shows what you're dragging
 - **Confirmation Modals**: Safety confirmation for destructive actions
 - **Responsive Design**: Clean, modern UI that works across screen sizes
+- **Scroll-friendly**: Large padding at bottom ensures easy widget dropping
 
 ## 🛠️ Tech Stack
 
@@ -40,11 +67,14 @@ A modern, interactive dashboard builder with drag-and-drop functionality.
 - **@dnd-kit/core 6.3.1** - Drag and drop framework
 - **@dnd-kit/sortable 10.0.0** - Sortable lists
 
+### Data Visualization
+- **Recharts 2.x** - Composable charting library built on React components
+
 ### UI & Styling
 - **Ant Design 5.x** - Component library
 - **TailwindCSS 3.4.18** - Utility-first CSS
 - **Framer Motion 12.23.24** - Animation library
-- **@ant-design/colors** - Design system colors
+- **@ant-design/colors** - Design system color palette
 
 ## 🚀 Getting Started
 
@@ -84,22 +114,36 @@ src/
 │   │   ├── SidebarLibrary.tsx   # Widget template library
 │   │   ├── DashboardCanvas.tsx  # Main canvas area
 │   │   └── DragOverlayWrapper.tsx  # Drag preview overlay
-│   ├── widgets/             # Widget components
-│   │   ├── DashboardWidget.tsx  # Widget wrapper
-│   │   ├── MetricWidget.tsx
-│   │   ├── TextWidget.tsx
-│   │   ├── ChartWidget.tsx
-│   │   ├── TodoWidget.tsx
-│   │   └── ImageWidget.tsx
+│   ├── widgets/             # Widget components (folder-based)
+│   │   ├── MetricWidget/
+│   │   │   ├── MetricWidget.tsx
+│   │   │   ├── utils.tsx    # Arrow and color logic
+│   │   │   └── index.ts
+│   │   ├── TextWidget/
+│   │   │   ├── TextWidget.tsx
+│   │   │   └── index.ts
+│   │   ├── ChartWidget/
+│   │   │   ├── ChartWidget.tsx
+│   │   │   ├── utils.tsx    # Chart rendering logic
+│   │   │   └── index.ts
+│   │   ├── TodoWidget/
+│   │   │   ├── TodoWidget.tsx
+│   │   │   └── index.ts
+│   │   ├── ImageWidget/
+│   │   │   ├── ImageWidget.tsx
+│   │   │   └── index.ts
+│   │   └── DashboardWidget.tsx  # Widget wrapper with forwardRef
 │   ├── modals/
 │   │   └── ResetConfirmationModal.tsx
 │   └── panels/
-│       └── WidgetSettingsPanel.tsx
+│       └── WidgetSettingsPanel.tsx  # Settings panel UI
 ├── hooks/
-│   └── useDragAndDrop.ts    # Custom hook for DnD logic
+│   ├── useDragAndDrop.ts    # Custom hook for DnD logic
+│   └── useWidgetSettings.ts # Custom hook for settings panel logic
 ├── store/
 │   └── dashboardStore.ts    # Zustand store
 ├── types/
+│   ├── index.ts             # Type exports
 │   └── widget.types.ts      # TypeScript definitions
 ├── utils/
 │   ├── widgetTemplates.ts   # Widget template configs
@@ -128,18 +172,42 @@ Zustand store with middleware:
 ### Theme System
 Three themes using Ant Design color palette:
 - **Light**: White background, dark text
-- **Dark**: Dark background (#141414), light text
-- **Accent**: Light blue background, blue text
+- **Dark**: Dark gray background (gray[9]), light text (gray[2])
+- **Accent**: Light blue background (blue[0]), blue text (blue[6])
+
+All colors sourced from `@ant-design/colors` for consistency and maintainability.
+
+### Chart Widget Features
+The Chart widget uses **Recharts** for professional data visualization:
+- **4 Chart Types**: Seamlessly switch between Line, Bar, Area, and Pie charts
+- **Data Management**: Add, edit, and remove data points via settings panel
+- **Theme Integration**: Charts automatically adapt colors to widget theme
+- **Interactive Elements**: Tooltips, legends, and hover effects
+- **Responsive**: Charts resize properly within widget containers
 
 ## 🔧 Configuration
 
 ## 📝 Development Notes
 
 ### Adding New Widget Types
-1. Add type to `widget.types.ts`
-2. Create widget component in `components/widgets/`
-3. Add template to `widgetTemplates.ts`
+1. Add type to `types/widget.types.ts`
+2. Create widget folder in `components/widgets/YourWidget/`
+   - `YourWidget.tsx` - Component file
+   - `utils.tsx` - Optional utility functions
+   - `index.ts` - Barrel export
+3. Add template to `utils/widgetTemplates.ts`
 4. Add case in `DashboardWidget.tsx` switch statement
+5. Add content editing support in:
+   - `hooks/useWidgetSettings.ts` - Add handlers
+   - `components/panels/WidgetSettingsPanel.tsx` - Add UI
 
 ### Modifying Themes
-Update `themeStyles.ts` with new color combinations from `@ant-design/colors`
+Update `utils/themeStyles.ts` with new color combinations from `@ant-design/colors`
+
+### Code Patterns Used
+- **Folder-based Widget Organization**: Each widget in its own folder with utils
+- **Custom Hooks**: Logic extracted from components (e.g., `useWidgetSettings`, `useDragAndDrop`)
+- **Ant Design Colors**: All colors use `@ant-design/colors` tokens (no hardcoded hex)
+- **Named Exports**: Using `export { Component }` pattern
+- **forwardRef**: For components used with Framer Motion
+- **Auto-save**: All changes persist immediately to localStorage via Zustand

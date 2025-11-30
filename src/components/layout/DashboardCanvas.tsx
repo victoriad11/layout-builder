@@ -1,6 +1,6 @@
 import { Empty } from 'antd';
 import { AppstoreAddOutlined } from '@ant-design/icons';
-import { blue, gray } from '@ant-design/colors';
+import { gray } from '@ant-design/colors';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { AnimatePresence } from 'framer-motion';
@@ -9,7 +9,7 @@ import { DashboardWidget } from '../widgets';
 
 export default function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);
-  const { setNodeRef, isOver } = useDroppable({
+  const { setNodeRef } = useDroppable({
     id: 'dashboard-canvas',
   });
 
@@ -21,9 +21,6 @@ export default function DashboardCanvas() {
       <main
         ref={setNodeRef}
         className="flex-1 bg-gray-50 p-8"
-        style={{
-          backgroundColor: isOver ? blue[1] : undefined,
-        }}
       >
         <div className="h-full flex items-center justify-center">
           <Empty
@@ -48,9 +45,6 @@ export default function DashboardCanvas() {
     <main
       ref={setNodeRef}
       className="flex-1 bg-gray-50 p-8 overflow-y-auto"
-      style={{
-        backgroundColor: isOver ? blue[1] : undefined,
-      }}
     >
       <div className="max-w-5xl mx-auto space-y-4 pb-96">
         <SortableContext items={widgetIds} strategy={verticalListSortingStrategy}>
