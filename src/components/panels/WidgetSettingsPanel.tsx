@@ -1,9 +1,21 @@
+import { useState, useEffect } from 'react';
 import { Drawer, Form, Input, Select, Button, Divider, Space } from 'antd';
 import { CloseOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useWidgetSettings } from '../../hooks';
 import { TodoItem } from '../../types';
 
 function WidgetSettingsPanel() {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const {
     selectedWidget,
     selectedWidgetId,
@@ -170,10 +182,10 @@ function WidgetSettingsPanel() {
   return (
     <Drawer
       title="Widget Settings"
-      placement="right"
+      placement={isMobile ? 'bottom' : 'right'}
       onClose={handleClose}
       open={!!selectedWidgetId}
-      size={360}
+      size={isMobile ? 'large' : 360}
       closeIcon={<CloseOutlined />}
     >
       <Form layout="vertical">
