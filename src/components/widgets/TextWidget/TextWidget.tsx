@@ -1,6 +1,7 @@
 import { Typography } from 'antd';
 import { WidgetInstance } from '../../../types';
 import { getThemeStyles } from '../../../utils';
+import { DEFAULT_TEXT_CONTENT } from '../../../config';
 
 const { Paragraph } = Typography;
 
@@ -9,7 +10,7 @@ interface TextWidgetProps {
 }
 
 function TextWidget({ widget }: TextWidgetProps) {
-  const content = widget.config.content || 'Add your text content here...';
+  const content = widget.config.content || DEFAULT_TEXT_CONTENT;
   const themeStyles = getThemeStyles(widget.config.theme);
 
   return (

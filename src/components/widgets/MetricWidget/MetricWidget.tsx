@@ -2,13 +2,14 @@ import { Statistic } from 'antd';
 import { WidgetInstance } from '../../../types';
 import { getThemeStyles } from '../../../utils';
 import { getArrowIcon, getValueColor } from './utils';
+import { DEFAULT_METRIC_VALUE } from '../../../config';
 
 interface MetricWidgetProps {
   widget: WidgetInstance;
 }
 
 function MetricWidget({ widget }: MetricWidgetProps) {
-  const value = widget.config.value || 0;
+  const value = widget.config.value || DEFAULT_METRIC_VALUE;
   const themeStyles = getThemeStyles(widget.config.theme);
   const valueColor = getValueColor(value, widget.config.theme);
 

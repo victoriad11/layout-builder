@@ -1,20 +1,24 @@
 import { useState } from 'react';
-import { ConfigProvider, theme } from 'antd';
-import { blue, gray } from '@ant-design/colors';
+import { ConfigProvider } from 'antd';
+import { gray } from '@ant-design/colors';
 import { DndContext } from '@dnd-kit/core';
-import HeaderBar from './components/layout/HeaderBar';
-import SidebarLibrary from './components/layout/SidebarLibrary';
-import DashboardCanvas from './components/layout/DashboardCanvas';
-import DragOverlayWrapper from './components/layout/DragOverlayWrapper';
-import ResetConfirmationModal from './components/modals/ResetConfirmationModal';
-import WidgetSettingsPanel from './components/panels/WidgetSettingsPanel';
+import { HeaderBar } from './components/layout/HeaderBar';
+import { SidebarLibrary } from './components/layout/SidebarLibrary';
+import { DashboardCanvas } from './components/layout/DashboardCanvas';
+import { DragOverlayWrapper } from './components/layout/DragOverlayWrapper';
+import { ResetConfirmationModal } from './components/modals/ResetConfirmationModal';
+import { WidgetSettingsPanel } from './components/panels/WidgetSettingsPanel';
 import { useDashboardStore } from './store/dashboardStore';
 import { useDragAndDrop } from './hooks/useDragAndDrop';
+import { antdThemeConfig } from './lib/antd-theme';
 
 function App() {
   const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+
   const resetDashboard = useDashboardStore((state) => state.resetDashboard);
+
   const widgets = useDashboardStore((state) => state.widgets);
+
   const { activeId, sensors, handleDragStart, handleDragEnd } = useDragAndDrop();
 
   const handleResetConfirm = () => {
@@ -23,16 +27,7 @@ function App() {
   };
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.defaultAlgorithm,
-        token: {
-          colorPrimary: blue[6],
-          borderRadius: 8,
-          fontSize: 14,
-        },
-      }}
-    >
+    <ConfigProvider theme={antdThemeConfig}>
       <DndContext
         sensors={sensors}
         onDragStart={handleDragStart}

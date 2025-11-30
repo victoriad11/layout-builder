@@ -1,12 +1,14 @@
 import { Image } from 'antd';
 import { WidgetInstance } from '../../../types';
+import { CHART_CONFIG } from '../../../constants';
+import { DEFAULT_IMAGE_URL } from '../../../config';
 
 interface ImageWidgetProps {
   widget: WidgetInstance;
 }
 
 function ImageWidget({ widget }: ImageWidgetProps) {
-  const imageUrl = widget.config.imageUrl || 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image';
+  const imageUrl = widget.config.imageUrl || DEFAULT_IMAGE_URL;
 
   const handleContainerClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -20,7 +22,7 @@ function ImageWidget({ widget }: ImageWidgetProps) {
           alt={widget.title}
           width="100%"
           className="rounded-lg"
-          style={{ objectFit: 'cover', maxHeight: '300px', display: 'block' }}
+          style={{ objectFit: 'cover', maxHeight: `${CHART_CONFIG.DEFAULT_HEIGHT}px`, display: 'block' }}
           preview={true}
         />
       </div>

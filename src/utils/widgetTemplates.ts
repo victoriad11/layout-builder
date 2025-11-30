@@ -1,4 +1,13 @@
 import { WidgetTemplate } from '../types';
+import {
+  DEFAULT_WIDGET_THEME,
+  DEFAULT_METRIC_VALUE,
+  DEFAULT_TEXT_CONTENT,
+  DEFAULT_CHART_TYPE,
+  DEFAULT_CHART_DATA,
+  DEFAULT_TODO_ITEMS,
+  DEFAULT_IMAGE_URL,
+} from '../config';
 
 export const WIDGET_TEMPLATES: WidgetTemplate[] = [
   {
@@ -7,8 +16,8 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     icon: '📊',
     description: 'Display a key metric or KPI',
     defaultConfig: {
-      theme: 'light',
-      value: 1234,
+      theme: DEFAULT_WIDGET_THEME,
+      value: DEFAULT_METRIC_VALUE,
     },
   },
   {
@@ -17,8 +26,8 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     icon: '📝',
     description: 'Rich text content block',
     defaultConfig: {
-      theme: 'light',
-      content: 'This is a text block widget. You can add any content here.',
+      theme: DEFAULT_WIDGET_THEME,
+      content: DEFAULT_TEXT_CONTENT,
     },
   },
   {
@@ -27,16 +36,9 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     icon: '📈',
     description: 'Visualization placeholder',
     defaultConfig: {
-      theme: 'light',
-      chartType: 'line',
-      chartData: [
-        { name: 'Jan', value: 400 },
-        { name: 'Feb', value: 300 },
-        { name: 'Mar', value: 600 },
-        { name: 'Apr', value: 800 },
-        { name: 'May', value: 500 },
-        { name: 'Jun', value: 700 },
-      ],
+      theme: DEFAULT_WIDGET_THEME,
+      chartType: DEFAULT_CHART_TYPE,
+      chartData: [...DEFAULT_CHART_DATA],
     },
   },
   {
@@ -45,12 +47,8 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     icon: '✓',
     description: 'Task checklist',
     defaultConfig: {
-      theme: 'light',
-      items: [
-        { text: 'Task 1', completed: false },
-        { text: 'Task 2', completed: false },
-        { text: 'Task 3', completed: false },
-      ],
+      theme: DEFAULT_WIDGET_THEME,
+      items: [...DEFAULT_TODO_ITEMS],
     },
   },
   {
@@ -59,13 +57,26 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     icon: '🖼️',
     description: 'Image with caption',
     defaultConfig: {
-      theme: 'light',
-      imageUrl: 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image',
+      theme: DEFAULT_WIDGET_THEME,
+      imageUrl: DEFAULT_IMAGE_URL,
     },
   },
 ];
 
-// Helper function to generate unique widget IDs
+/**
+ * Generate a unique identifier for a new widget instance
+ *
+ * Creates a unique ID by combining the current timestamp with a random string.
+ * This ensures uniqueness even if multiple widgets are created in quick succession.
+ *
+ * @returns A unique widget ID in the format 'widget-{timestamp}-{random}'
+ *
+ * @example
+ * ```ts
+ * const widgetId = generateWidgetId();
+ * // Returns: 'widget-1701234567890-a3f2k9d1x'
+ * ```
+ */
 export const generateWidgetId = (): string => {
   return `widget-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 };

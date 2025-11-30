@@ -8,7 +8,7 @@ interface ResetConfirmationModalProps {
   onConfirm: () => void;
 }
 
-export default function ResetConfirmationModal({
+function ResetConfirmationModal({
   isOpen,
   onClose,
   onConfirm,
@@ -17,7 +17,7 @@ export default function ResetConfirmationModal({
     <Modal
       title={
         <span>
-          <ExclamationCircleOutlined style={{ color: red[5] }} className='mr-2'   />
+          <ExclamationCircleOutlined style={{ color: red[5] }} className='mr-2' />
           Reset Dashboard?
         </span>
       }
@@ -34,3 +34,5 @@ export default function ResetConfirmationModal({
     </Modal>
   );
 }
+
+export { ResetConfirmationModal }

@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useDashboardStore } from '../../store';
 import { DashboardWidget } from '../widgets';
 
-export default function DashboardCanvas() {
+function DashboardCanvas() {
   const widgets = useDashboardStore((state) => state.widgets);
   const { setNodeRef } = useDroppable({
     id: 'dashboard-canvas',
@@ -58,3 +58,5 @@ export default function DashboardCanvas() {
     </main>
   );
 }
+
+export { DashboardCanvas }

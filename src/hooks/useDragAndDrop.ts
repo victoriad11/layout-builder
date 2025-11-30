@@ -11,6 +11,7 @@ import { arrayMove } from '@dnd-kit/sortable';
 import { useDashboardStore } from '../store';
 import { WIDGET_TEMPLATES, generateWidgetId } from '../utils';
 import { WidgetType } from '../types';
+import { DRAG_CONFIG } from '../constants';
 
 export function useDragAndDrop() {
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -21,7 +22,7 @@ export function useDragAndDrop() {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
-        distance: 8, // 8px movement required before drag starts
+        distance: DRAG_CONFIG.ACTIVATION_DISTANCE,
       },
     }),
     useSensor(KeyboardSensor)

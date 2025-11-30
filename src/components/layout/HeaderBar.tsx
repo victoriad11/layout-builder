@@ -7,7 +7,7 @@ interface HeaderBarProps {
   onResetClick: () => void;
 }
 
-export default function HeaderBar({ onResetClick }: HeaderBarProps) {
+function HeaderBar({ onResetClick }: HeaderBarProps) {
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
@@ -31,3 +31,5 @@ export default function HeaderBar({ onResetClick }: HeaderBarProps) {
     </header>
   );
 }
+
+export { HeaderBar }

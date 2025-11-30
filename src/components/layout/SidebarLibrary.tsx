@@ -2,6 +2,7 @@ import { Card, Typography, Space } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
 import { WIDGET_TEMPLATES } from '../../utils';
 import { WidgetTemplate } from '../../types';
+import { DRAG_CONFIG } from '../../constants';
 
 const { Title, Text } = Typography;
 
@@ -23,7 +24,7 @@ function DraggableWidgetCard({ template }: { template: WidgetTemplate }) {
       hoverable
       className="cursor-move hover:cursor-pointer rounded-2"
       style={{
-        opacity: isDragging ? 0.5 : 1,
+        opacity: isDragging ? DRAG_CONFIG.DRAG_OPACITY : 1,
       }}
     >
       <div className="flex items-center gap-4">
@@ -61,3 +62,5 @@ export default function SidebarLibrary() {
     </aside>
   );
 }
+
+export { DraggableWidgetCard, SidebarLibrary }
