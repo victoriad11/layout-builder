@@ -1,4 +1,5 @@
 import { Drawer, Space, Card, Typography } from 'antd';
+import { CloseOutlined } from '@ant-design/icons';
 import { WIDGET_TEMPLATES, generateWidgetId } from '../../utils';
 import { WidgetTemplate } from '../../types';
 import { useDashboardStore } from '../../store';
@@ -69,14 +70,14 @@ export function MobileWidgetDrawer({ open, onClose }: MobileWidgetDrawerProps) {
       onClose={onClose}
       open={open}
       size="large"
+      closable
+      closeIcon={<CloseOutlined />}
+      maskClosable
       styles={{
-        body: {
-          paddingTop: 16,
-          paddingBottom: 'calc(16px + env(safe-area-inset-bottom))'
+        wrapper: {
+          overflowY: 'auto',
+          maxHeight: '85vh',
         },
-        header: {
-          paddingTop: 'calc(16px + env(safe-area-inset-top))'
-        }
       }}
     >
       <Space orientation="vertical" size="small" style={{ width: '100%' }}>

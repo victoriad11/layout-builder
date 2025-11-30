@@ -24,11 +24,3 @@ body {
   user-select: none;
   -webkit-touch-callout: none;
 }
-
-/* iOS safe area support */
-@supports (padding: max(0px)) {
-  body {
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-}
