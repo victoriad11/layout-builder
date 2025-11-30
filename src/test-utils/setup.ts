@@ -22,7 +22,7 @@ const localStorageMock = (() => {
   };
 })();
 
-global.localStorage = localStorageMock as Storage;
+globalThis.localStorage = localStorageMock as Storage;
 
 beforeEach(() => {
   localStorage.clear();
