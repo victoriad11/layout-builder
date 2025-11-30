@@ -1,15 +1,16 @@
 import { Statistic } from 'antd';
-import { ArrowUpOutlined } from '@ant-design/icons';
-import { WidgetInstance } from '../../types/widget.types';
-import { getThemeStyles } from '../../utils/themeStyles';
+import { WidgetInstance } from '../../../types';
+import { getThemeStyles } from '../../../utils';
+import { getArrowIcon, getValueColor } from './utils';
 
 interface MetricWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function MetricWidget({ widget }: MetricWidgetProps) {
+function MetricWidget({ widget }: MetricWidgetProps) {
   const value = widget.config.value || 0;
   const themeStyles = getThemeStyles(widget.config.theme);
+  const valueColor = getValueColor(value, widget.config.theme);
 
   return (
     <div className="p-4">
@@ -19,10 +20,12 @@ export default function MetricWidget({ widget }: MetricWidgetProps) {
         precision={0}
         styles={{
           title: { color: themeStyles.textColor },
-          content: { color: widget.config.theme === 'dark' ? '#10b981' : '#3f8600' }
+          content: { color: valueColor || themeStyles.textColor }
         }}
-        prefix={<ArrowUpOutlined />}
+        prefix={getArrowIcon(value)}
       />
     </div>
   );
 }
+
+export { MetricWidget }

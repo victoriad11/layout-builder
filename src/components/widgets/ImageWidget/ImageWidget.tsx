@@ -1,11 +1,11 @@
 import { Image } from 'antd';
-import { WidgetInstance } from '../../types/widget.types';
+import { WidgetInstance } from '../../../types';
 
 interface ImageWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function ImageWidget({ widget }: ImageWidgetProps) {
+function ImageWidget({ widget }: ImageWidgetProps) {
   const imageUrl = widget.config.imageUrl || 'https://placehold.co/400x300/e0f2fe/0958d9?text=Dashboard+Image';
 
   const handleContainerClick = (e: React.MouseEvent) => {
@@ -25,3 +25,5 @@ export default function ImageWidget({ widget }: ImageWidgetProps) {
     </div>
   );
 }
+
+export { ImageWidget }

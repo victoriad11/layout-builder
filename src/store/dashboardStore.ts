@@ -5,7 +5,6 @@ import { DashboardStore, WidgetInstance } from '../types/widget.types';
 export const useDashboardStore = create<DashboardStore>()(
   persist(
     (set) => ({
-      // Initial state
       widgets: [
         {
           id: 'test-widget-1',

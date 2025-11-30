@@ -1,4 +1,4 @@
-import { ThemeType } from '../types/widget.types';
+import { ThemeType } from '../types';
 import { blue, gray } from '@ant-design/colors';
 
 export interface ThemeStyles {

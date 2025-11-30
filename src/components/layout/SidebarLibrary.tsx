@@ -1,7 +1,7 @@
 import { Card, Typography, Space } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { WIDGET_TEMPLATES } from '../../utils/widgetTemplates';
-import { WidgetTemplate } from '../../types/widget.types';
+import { WIDGET_TEMPLATES } from '../../utils';
+import { WidgetTemplate } from '../../types';
 
 const { Title, Text } = Typography;
 

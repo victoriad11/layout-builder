@@ -1,22 +1,23 @@
+import { forwardRef } from 'react';
 import { Card, Button } from 'antd';
 import { HolderOutlined, CloseOutlined } from '@ant-design/icons';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { motion } from 'framer-motion';
-import { WidgetInstance } from '../../types/widget.types';
-import { useDashboardStore } from '../../store/dashboardStore';
-import { getThemeStyles } from '../../utils/themeStyles';
-import MetricWidget from './MetricWidget';
-import TextWidget from './TextWidget';
-import ChartWidget from './ChartWidget';
-import TodoWidget from './TodoWidget';
-import ImageWidget from './ImageWidget';
+import { WidgetInstance } from '../../types';
+import { useDashboardStore } from '../../store';
+import { getThemeStyles } from '../../utils';
+import { MetricWidget } from './MetricWidget';
+import { TextWidget } from './TextWidget';
+import { ChartWidget } from './ChartWidget';
+import { TodoWidget } from './TodoWidget';
+import { ImageWidget } from './ImageWidget';
 
 interface DashboardWidgetProps {
   widget: WidgetInstance;
 }
 
-export default function DashboardWidget({ widget }: DashboardWidgetProps) {
+const DashboardWidget = forwardRef<HTMLDivElement, DashboardWidgetProps>(({ widget }, _ref) => {
   const removeWidget = useDashboardStore((state) => state.removeWidget);
   const setSelectedWidget = useDashboardStore((state) => state.setSelectedWidget);
 
@@ -51,7 +52,7 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
   };
 
   const handleRemove = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent triggering widget click
+    e.stopPropagation();
     removeWidget(widget.id);
   };
 
@@ -59,7 +60,6 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
     setSelectedWidget(widget.id);
   };
 
-  // Render widget content based on type
   const renderWidgetContent = () => {
     switch (widget.type) {
       case 'metric':
@@ -126,4 +126,8 @@ export default function DashboardWidget({ widget }: DashboardWidgetProps) {
       </Card>
     </motion.div>
   );
-}
+});
+
+DashboardWidget.displayName = 'DashboardWidget';
+
+export { DashboardWidget }
