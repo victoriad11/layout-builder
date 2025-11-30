@@ -70,7 +70,13 @@ export function MobileWidgetDrawer({ open, onClose }: MobileWidgetDrawerProps) {
       open={open}
       size="large"
       styles={{
-        body: { paddingTop: 8 }
+        body: {
+          paddingTop: 16,
+          paddingBottom: 'calc(16px + env(safe-area-inset-bottom))'
+        },
+        header: {
+          paddingTop: 'calc(16px + env(safe-area-inset-top))'
+        }
       }}
     >
       <Space orientation="vertical" size="small" style={{ width: '100%' }}>
