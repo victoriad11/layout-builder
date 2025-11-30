@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ConfigProvider, theme } from 'antd';
+import { blue, gray } from '@ant-design/colors';
 import { DndContext } from '@dnd-kit/core';
 import HeaderBar from './components/layout/HeaderBar';
 import SidebarLibrary from './components/layout/SidebarLibrary';
@@ -26,7 +27,7 @@ function App() {
       theme={{
         algorithm: theme.defaultAlgorithm,
         token: {
-          colorPrimary: '#074eb3',
+          colorPrimary: blue[6],
           borderRadius: 8,
           fontSize: 14,
         },
@@ -37,7 +38,7 @@ function App() {
         onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
-        <div className="h-screen flex flex-col bg-gray-50">
+        <div className="h-screen flex flex-col" style={{ backgroundColor: gray[2] }}>
           <HeaderBar onResetClick={() => setIsResetModalOpen(true)} />
 
           <div className="flex-1 flex overflow-hidden">
