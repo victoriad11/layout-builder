@@ -16,6 +16,10 @@ export default function WidgetSettingsPanel() {
     handleTodoItemChange,
     handleAddTodoItem,
     handleRemoveTodoItem,
+    handleChartDataChange,
+    handleAddChartDataPoint,
+    handleRemoveChartDataPoint,
+    handleChartTypeChange,
   } = useWidgetSettings();
 
   const renderContentSettings = () => {
@@ -102,10 +106,56 @@ export default function WidgetSettingsPanel() {
         );
 
       case 'chart':
+        const chartData = selectedWidget?.config.chartData || [];
         return (
-          <div className="text-sm text-gray-500 italic">
-            Chart widgets display placeholder content only
-          </div>
+          <>
+            <Form.Item label="Chart Type">
+              <Select
+                value={selectedWidget.config.chartType || 'line'}
+                onChange={handleChartTypeChange}
+                options={[
+                  { label: 'Line Chart', value: 'line' },
+                  { label: 'Bar Chart', value: 'bar' },
+                  { label: 'Area Chart', value: 'area' },
+                  { label: 'Pie Chart', value: 'pie' },
+                ]}
+              />
+            </Form.Item>
+            <Form.Item label="Chart Data Points">
+              <Space orientation="vertical" style={{ width: '100%' }} size="small">
+                {chartData.map((point: { name: string; value: number }, index: number) => (
+                  <Space.Compact key={index} style={{ width: '100%' }}>
+                    <Input
+                      value={point.name}
+                      onChange={(e) => handleChartDataChange(index, 'name', e.target.value)}
+                      placeholder="Label"
+                      style={{ width: '40%' }}
+                    />
+                    <Input
+                      type="number"
+                      value={point.value}
+                      onChange={(e) => handleChartDataChange(index, 'value', e.target.value)}
+                      placeholder="Value"
+                      style={{ width: '40%' }}
+                    />
+                    <Button
+                      danger
+                      icon={<DeleteOutlined />}
+                      onClick={() => handleRemoveChartDataPoint(index)}
+                    />
+                  </Space.Compact>
+                ))}
+              </Space>
+            </Form.Item>
+            <Button
+              type="dashed"
+              block
+              icon={<PlusOutlined />}
+              onClick={handleAddChartDataPoint}
+            >
+              Add Data Point
+            </Button>
+          </>
         );
 
       default:

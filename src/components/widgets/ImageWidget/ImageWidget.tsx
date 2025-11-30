@@ -14,11 +14,13 @@ function ImageWidget({ widget }: ImageWidgetProps) {
 
   return (
     <div className="p-4">
-      <div onClick={handleContainerClick} className='w-fit'>
+      <div onClick={handleContainerClick}>
         <Image
           src={imageUrl}
           alt={widget.title}
-          className="w-full rounded-lg"
+          width="100%"
+          className="rounded-lg"
+          style={{ objectFit: 'cover', maxHeight: '300px', display: 'block' }}
           preview={true}
         />
       </div>

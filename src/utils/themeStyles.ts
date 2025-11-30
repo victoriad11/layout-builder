@@ -7,12 +7,14 @@ export interface ThemeStyles {
   borderColor: string;
 }
 
+const ANT_TEXT_COLOR = 'rgba(0, 0, 0, 0.88)';
+
 export const getThemeStyles = (theme?: ThemeType): ThemeStyles => {
   switch (theme) {
     case 'dark':
       return {
         backgroundColor: gray[9],
-        textColor: '#ffffff',
+        textColor: gray[2],
         borderColor: gray[8],
       };
     case 'accent':
@@ -25,7 +27,7 @@ export const getThemeStyles = (theme?: ThemeType): ThemeStyles => {
     default:
       return {
         backgroundColor: '#ffffff',
-        textColor: '#000000d9',
+        textColor: ANT_TEXT_COLOR,
         borderColor: gray[5],
       };
   }

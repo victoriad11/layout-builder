@@ -2,9 +2,16 @@ export type WidgetType = "metric" | "text" | "chart" | "todo" | "image";
 
 export type ThemeType = "light" | "dark" | "accent";
 
+export type ChartType = "line" | "bar" | "area" | "pie";
+
 export interface TodoItem {
   text: string;
   completed: boolean;
+}
+
+export interface ChartDataPoint {
+  name: string;
+  value: number;
 }
 
 export interface WidgetInstance {
@@ -18,6 +25,8 @@ export interface WidgetInstance {
     content?: string;  // For text widgets
     items?: TodoItem[];  // For todo widgets
     imageUrl?: string;  // For image widgets
+    chartType?: ChartType;  // For chart widgets
+    chartData?: ChartDataPoint[];  // For chart widgets
     [key: string]: any;  // Allow additional properties
   };
 }

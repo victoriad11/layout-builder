@@ -28,6 +28,15 @@ export const WIDGET_TEMPLATES: WidgetTemplate[] = [
     description: 'Visualization placeholder',
     defaultConfig: {
       theme: 'light',
+      chartType: 'line',
+      chartData: [
+        { name: 'Jan', value: 400 },
+        { name: 'Feb', value: 300 },
+        { name: 'Mar', value: 600 },
+        { name: 'Apr', value: 800 },
+        { name: 'May', value: 500 },
+        { name: 'Jun', value: 700 },
+      ],
     },
   },
   {
